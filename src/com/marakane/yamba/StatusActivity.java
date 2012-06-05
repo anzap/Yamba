@@ -3,12 +3,16 @@ package com.marakane.yamba;
 import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -41,6 +45,25 @@ public class StatusActivity extends Activity implements OnClickListener,
 		textCount.setTextColor(Color.GREEN);
 
 		twitter = new Twitter("student", "password");
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.menu.menu, menu);
+		return true;
+	}
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.itemPrefs:
+			startActivity(new Intent(this, PrefsActivity.class));
+			break;
+		default:
+			break;
+		}
+		return true;
 	}
 
 	public void onClick(View v) {
