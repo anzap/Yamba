@@ -1,15 +1,11 @@
 package com.marakane.yamba;
 
-import winterwell.jtwitter.Twitter;
 import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -24,23 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class StatusActivity extends Activity implements OnClickListener,
-		TextWatcher, OnSharedPreferenceChangeListener {
-	private static final String TAG = "StatusActivity";
+		TextWatcher {
+	private static final String TAG = StatusActivity.class.getSimpleName();
 	private EditText editText;
 	private Button updateButton;
-	private Twitter twitter;
 	private TextView textCount;
-	private SharedPreferences prefs;
 
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.status);
-
-		// Setup preferences
-		prefs = PreferenceManager.getDefaultSharedPreferences(this);
-		prefs.registerOnSharedPreferenceChangeListener(this);
 
 		editText = (EditText) findViewById(R.id.statusText);
 		editText.addTextChangedListener(this);
@@ -66,6 +56,12 @@ public class StatusActivity extends Activity implements OnClickListener,
 		case R.id.itemPrefs:
 			startActivity(new Intent(this, PrefsActivity.class));
 			break;
+		case R.id.itemServiceStart:
+			startService(new Intent(this, UpdaterService.class));
+			break;
+		case R.id.itemServiceStop:
+			stopService(new Intent(this, UpdaterService.class));
+			break;
 		default:
 			break;
 		}
@@ -83,8 +79,8 @@ public class StatusActivity extends Activity implements OnClickListener,
 		@Override
 		protected String doInBackground(String... params) {
 			try {
-				winterwell.jtwitter.Status status = getTwitter().setStatus(
-						params[0]);
+				winterwell.jtwitter.Status status = ((YambaApplication) getApplication())
+						.getTwitter().setStatus(params[0]);
 				return status.text;
 			} catch (TwitterException e) {
 				Log.d(TAG, e.toString());
@@ -123,24 +119,6 @@ public class StatusActivity extends Activity implements OnClickListener,
 	}
 
 	public void onTextChanged(CharSequence s, int start, int before, int count) {
-	}
-
-	public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
-			String key) {
-		twitter = null;
-	}
-
-	private Twitter getTwitter() {
-		if (twitter == null) {
-			String username = prefs.getString("username", "");
-			String password = prefs.getString("password", "");
-			String apiRoot = prefs.getString("apiRoot",
-					"http://yamba.marakana.com/api");
-
-			twitter = new Twitter(username, password);
-			twitter.setAPIRootUrl(apiRoot);
-		}
-		return twitter;
 	}
 
 }

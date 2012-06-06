@@ -12,5 +12,7 @@
     <string name="titleApiRoot">Api Root</string>
     <string name="summaryApiRoot">Api Root summary</string>
     <string name="titlePrefs">Preferences</string>
+    <string name="titleServiceStart">Start Updater Service</string>
+    <string name="titleServiceStop">Stop Updater Service</string>
 
 </resources>
