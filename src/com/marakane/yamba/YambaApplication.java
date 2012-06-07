@@ -14,6 +14,7 @@ public class YambaApplication extends Application implements
 
 	private SharedPreferences prefs;
 	private Twitter twitter;
+	private boolean serviceRunning;
 
 	@Override
 	public void onCreate() {
@@ -49,6 +50,14 @@ public class YambaApplication extends Application implements
 	public synchronized void onSharedPreferenceChanged(
 			SharedPreferences sharedPreferences, String key) {
 		this.twitter = null;
+	}
+
+	public boolean isServiceRunning() {
+		return serviceRunning;
+	}
+
+	public void setServiceRunning(boolean serviceRunning) {
+		this.serviceRunning = serviceRunning;
 	}
 
 }

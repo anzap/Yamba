@@ -79,7 +79,7 @@ public class StatusActivity extends Activity implements OnClickListener,
 		@Override
 		protected String doInBackground(String... params) {
 			try {
-				winterwell.jtwitter.Status status = ((YambaApplication) getApplication())
+				winterwell.jtwitter.Twitter.Status status = ((YambaApplication) getApplication())
 						.getTwitter().setStatus(params[0]);
 				return status.text;
 			} catch (TwitterException e) {
