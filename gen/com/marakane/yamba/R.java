@@ -15,16 +15,22 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int buttonUpdate=0x7f070003;
-        public static final int itemPrefs=0x7f070004;
-        public static final int itemServiceStart=0x7f070005;
-        public static final int itemServiceStop=0x7f070006;
-        public static final int statusText=0x7f070002;
-        public static final int statusTitleText=0x7f070000;
-        public static final int textCount=0x7f070001;
+        public static final int buttonUpdate=0x7f070006;
+        public static final int itemPrefs=0x7f070008;
+        public static final int itemServiceStart=0x7f070009;
+        public static final int itemServiceStop=0x7f07000a;
+        public static final int listTimeline=0x7f070007;
+        public static final int statusText=0x7f070005;
+        public static final int statusTitleText=0x7f070003;
+        public static final int textCount=0x7f070004;
+        public static final int textCreatedAt=0x7f070001;
+        public static final int textText=0x7f070002;
+        public static final int textUser=0x7f070000;
     }
     public static final class layout {
-        public static final int status=0x7f030000;
+        public static final int row=0x7f030000;
+        public static final int status=0x7f030001;
+        public static final int timeline=0x7f030002;
     }
     public static final class menu {
         public static final int menu=0x7f060000;
@@ -42,6 +48,7 @@ public final class R {
         public static final int titleServiceStart=0x7f05000b;
         public static final int titleServiceStop=0x7f05000c;
         public static final int titleStatus=0x7f050001;
+        public static final int titleTimeline=0x7f05000d;
         public static final int titleUsername=0x7f050004;
     }
     public static final class xml {

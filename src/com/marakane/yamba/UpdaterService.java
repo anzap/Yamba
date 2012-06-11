@@ -44,6 +44,7 @@ public class UpdaterService extends Service {
 		this.updater.interrupt();
 		this.updater = null;
 		this.yamba.setServiceRunning(false);
+		this.yamba.getStatusData().close();
 
 	}
 

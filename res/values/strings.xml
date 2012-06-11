@@ -14,5 +14,6 @@
     <string name="titlePrefs">Preferences</string>
     <string name="titleServiceStart">Start Updater Service</string>
     <string name="titleServiceStop">Stop Updater Service</string>
+    <string name="titleTimeline">Timeline</string>
 
 </resources>
