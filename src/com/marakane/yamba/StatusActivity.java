@@ -1,17 +1,12 @@
 package com.marakane.yamba;
 
 import winterwell.jtwitter.TwitterException;
-import android.app.Activity;
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -19,7 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class StatusActivity extends Activity implements OnClickListener,
+public class StatusActivity extends BaseActivity implements OnClickListener,
 		TextWatcher {
 	private static final String TAG = StatusActivity.class.getSimpleName();
 	private EditText editText;
@@ -43,31 +38,6 @@ public class StatusActivity extends Activity implements OnClickListener,
 		textCount.setTextColor(Color.GREEN);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.menu, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.itemPrefs:
-			startActivity(new Intent(this, PrefsActivity.class));
-			break;
-		case R.id.itemServiceStart:
-			startService(new Intent(this, UpdaterService.class));
-			break;
-		case R.id.itemServiceStop:
-			stopService(new Intent(this, UpdaterService.class));
-			break;
-		default:
-			break;
-		}
-		return true;
-	}
-
 	public void onClick(View v) {
 		String status = editText.getText().toString();
 		new PostToTwitter().execute(status);
@@ -79,8 +49,8 @@ public class StatusActivity extends Activity implements OnClickListener,
 		@Override
 		protected String doInBackground(String... params) {
 			try {
-				winterwell.jtwitter.Twitter.Status status = ((YambaApplication) getApplication())
-						.getTwitter().setStatus(params[0]);
+				winterwell.jtwitter.Twitter.Status status = yamba.getTwitter()
+						.setStatus(params[0]);
 				return status.text;
 			} catch (TwitterException e) {
 				Log.d(TAG, e.toString());

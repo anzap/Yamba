@@ -108,5 +108,9 @@ public class YambaApplication extends Application implements
 		}
 		return 0;
 	}
+	
+	public SharedPreferences getPrefs() {
+		return prefs;
+	}
 
 }

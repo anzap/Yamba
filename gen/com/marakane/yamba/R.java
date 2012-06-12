@@ -17,8 +17,7 @@ public final class R {
     public static final class id {
         public static final int buttonUpdate=0x7f070006;
         public static final int itemPrefs=0x7f070008;
-        public static final int itemServiceStart=0x7f070009;
-        public static final int itemServiceStop=0x7f07000a;
+        public static final int itemToggleService=0x7f070009;
         public static final int listTimeline=0x7f070007;
         public static final int statusText=0x7f070005;
         public static final int statusTitleText=0x7f070003;
@@ -39,6 +38,7 @@ public final class R {
         public static final int app_name=0x7f050000;
         public static final int buttonUpdate=0x7f050002;
         public static final int hintText=0x7f050003;
+        public static final int msgSetupPrefs=0x7f05000e;
         public static final int summaryApiRoot=0x7f050009;
         public static final int summaryPassword=0x7f050007;
         public static final int summaryUsername=0x7f050005;

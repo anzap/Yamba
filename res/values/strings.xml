@@ -15,5 +15,6 @@
     <string name="titleServiceStart">Start Updater Service</string>
     <string name="titleServiceStop">Stop Updater Service</string>
     <string name="titleTimeline">Timeline</string>
+    <string name="msgSetupPrefs">Please setup your connection preferences</string>
 
 </resources>
