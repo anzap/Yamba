@@ -1,4 +1,4 @@
-package com.marakane.yamba;
+package com.marakana.yamba;
 
 import android.app.Service;
 import android.content.Intent;

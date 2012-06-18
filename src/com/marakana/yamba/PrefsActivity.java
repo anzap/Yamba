@@ -1,4 +1,6 @@
-package com.marakane.yamba;
+package com.marakana.yamba;
+
+import com.marakane.yamba.R;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
