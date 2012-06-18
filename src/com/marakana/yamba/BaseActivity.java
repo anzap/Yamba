@@ -1,7 +1,5 @@
 package com.marakana.yamba;
 
-import com.marakane.yamba.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

@@ -1,7 +1,5 @@
 package com.marakana.yamba;
 
-import com.marakane.yamba.R;
-
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -58,6 +56,7 @@ public class TimelineActivity extends BaseActivity {
 		}
 
 		filter = new IntentFilter(UpdaterService.NEW_STATUS_CONTENT);
+		receiver = new TimelineReceiver();
 	}
 
 	@Override
@@ -71,6 +70,7 @@ public class TimelineActivity extends BaseActivity {
 		super.onResume();
 
 		statusUpdates = yamba.getStatusData().getStatusUpdates();
+		Log.d(TAG, String.format("%d updates found", statusUpdates.getCount()));
 		startManagingCursor(statusUpdates);
 
 		adapter = new SimpleCursorAdapter(this, R.layout.row, statusUpdates,

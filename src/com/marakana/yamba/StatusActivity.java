@@ -1,7 +1,5 @@
 package com.marakana.yamba;
 
-import com.marakane.yamba.R;
-
 import winterwell.jtwitter.TwitterException;
 import android.graphics.Color;
 import android.os.AsyncTask;
