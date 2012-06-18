@@ -9,9 +9,12 @@ public class UpdaterService extends Service {
 
 	private static final String TAG = UpdaterService.class.getSimpleName();
 	private static final int DELAY = 60000;
+	protected static final String NEW_STATUS_CONTENT = "com.marakana.yamba.NEW_STATUS";
+	protected static final String NEW_STATUS_EXTRA_COUNT = "com.marakana.yamba.NEW_STATUS_EXTRA_COUNT";
 	private boolean runFlag = false;
 	private Updater updater;
 	private YambaApplication yamba;
+	private Intent intent;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -65,6 +68,9 @@ public class UpdaterService extends Service {
 
 					if (newUpdates > 0) {
 						Log.d(TAG, "We have a new status");
+						intent = new Intent(NEW_STATUS_CONTENT);
+						intent.putExtra(NEW_STATUS_EXTRA_COUNT, newUpdates);
+						updaterService.sendBroadcast(intent);
 					}
 					Log.d(TAG, "Updater ran");
 					Thread.sleep(DELAY);

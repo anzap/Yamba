@@ -1,9 +1,13 @@
 package com.marakane.yamba;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.text.format.DateUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
@@ -20,6 +24,9 @@ public class TimelineActivity extends BaseActivity {
 			StatusData.C_USER, StatusData.C_TEXT };
 	private static int[] TO = { R.id.textCreatedAt, R.id.textUser,
 			R.id.textText };
+	private TimelineReceiver receiver;
+	private IntentFilter filter;
+	
 
 	private static final ViewBinder VIEW_BINDER = new ViewBinder() {
 
@@ -47,6 +54,8 @@ public class TimelineActivity extends BaseActivity {
 			Toast.makeText(this, R.string.msgSetupPrefs, Toast.LENGTH_LONG)
 					.show();
 		}
+		
+		filter = new IntentFilter(UpdaterService.NEW_STATUS_CONTENT);
 	}
 
 	@Override
@@ -66,5 +75,25 @@ public class TimelineActivity extends BaseActivity {
 				FROM, TO);
 		adapter.setViewBinder(VIEW_BINDER);
 		listTimeline.setAdapter(adapter);
+		
+		registerReceiver(receiver, filter);
+	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+		
+		unregisterReceiver(receiver);
+	}
+	
+	class TimelineReceiver extends BroadcastReceiver {
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			statusUpdates.requery();
+			adapter.notifyDataSetChanged();
+			Log.d("TimelineReceiver", "onReceived");
+		}
+		
 	}
 }
