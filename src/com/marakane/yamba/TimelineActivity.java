@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 public class TimelineActivity extends BaseActivity {
 	private static final String TAG = TimelineActivity.class.getSimpleName();
+	private static final String SEND_TIMELINE_NOTIFICATIONS = "com.marakana.yamba.SEND_TIMELINE_NOTIFICATIONS";
 	private ListView listTimeline;
 	private Cursor statusUpdates;
 	private SimpleCursorAdapter adapter;
@@ -26,7 +27,6 @@ public class TimelineActivity extends BaseActivity {
 			R.id.textText };
 	private TimelineReceiver receiver;
 	private IntentFilter filter;
-	
 
 	private static final ViewBinder VIEW_BINDER = new ViewBinder() {
 
@@ -54,7 +54,7 @@ public class TimelineActivity extends BaseActivity {
 			Toast.makeText(this, R.string.msgSetupPrefs, Toast.LENGTH_LONG)
 					.show();
 		}
-		
+
 		filter = new IntentFilter(UpdaterService.NEW_STATUS_CONTENT);
 	}
 
@@ -75,17 +75,17 @@ public class TimelineActivity extends BaseActivity {
 				FROM, TO);
 		adapter.setViewBinder(VIEW_BINDER);
 		listTimeline.setAdapter(adapter);
-		
-		registerReceiver(receiver, filter);
+
+		registerReceiver(receiver, filter, SEND_TIMELINE_NOTIFICATIONS, null);
 	}
-	
+
 	@Override
 	protected void onPause() {
 		super.onPause();
-		
+
 		unregisterReceiver(receiver);
 	}
-	
+
 	class TimelineReceiver extends BroadcastReceiver {
 
 		@Override
@@ -94,6 +94,6 @@ public class TimelineActivity extends BaseActivity {
 			adapter.notifyDataSetChanged();
 			Log.d("TimelineReceiver", "onReceived");
 		}
-		
+
 	}
 }

@@ -39,6 +39,10 @@ public final class R {
         public static final int buttonUpdate=0x7f050002;
         public static final int hintText=0x7f050003;
         public static final int msgSetupPrefs=0x7f05000e;
+        public static final int receive_timeline_notifications_permission_description=0x7f050011;
+        public static final int receive_timeline_notifications_permission_label=0x7f050012;
+        public static final int send_timeline_notifications_permission_description=0x7f05000f;
+        public static final int send_timeline_notifications_permission_label=0x7f050010;
         public static final int summaryApiRoot=0x7f050009;
         public static final int summaryPassword=0x7f050007;
         public static final int summaryUsername=0x7f050005;

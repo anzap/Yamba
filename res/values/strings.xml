@@ -16,5 +16,9 @@
     <string name="titleServiceStop">Stop Updater Service</string>
     <string name="titleTimeline">Timeline</string>
     <string name="msgSetupPrefs">Please setup your connection preferences</string>
+    <string name="send_timeline_notifications_permission_description">Automatically notify timeline view when new updates are entered.</string>
+    <string name="send_timeline_notifications_permission_label">Send Timeline Notifications</string>
+    <string name="receive_timeline_notifications_permission_description">Automatically update timeline view when new updates are entered.</string>
+    <string name="receive_timeline_notifications_permission_label">Receive Timeline Notifications</string>
 
 </resources>

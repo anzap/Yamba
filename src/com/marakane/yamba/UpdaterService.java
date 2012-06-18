@@ -52,6 +52,8 @@ public class UpdaterService extends Service {
 	}
 
 	private class Updater extends Thread {
+		
+		private static final String RECEIVE_TIMELINE_NOTIFICATIONS = "com.marakana.yamba.RECEIVE_TIMELINE_NOTIFICATIONS";
 
 		public Updater() {
 			super("UpdaterService-Updater");
@@ -70,7 +72,7 @@ public class UpdaterService extends Service {
 						Log.d(TAG, "We have a new status");
 						intent = new Intent(NEW_STATUS_CONTENT);
 						intent.putExtra(NEW_STATUS_EXTRA_COUNT, newUpdates);
-						updaterService.sendBroadcast(intent);
+						updaterService.sendBroadcast(intent, RECEIVE_TIMELINE_NOTIFICATIONS);
 					}
 					Log.d(TAG, "Updater ran");
 					Thread.sleep(DELAY);
